@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Liquid Layout</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+		<style type="text/css">
+			/* Resetting default styles */
+			body, h1, h2, h3, p, ul, li {
+				margin: 0;
+				padding: 0;
+			}
+
+			/* General Styles */
+			body {
+				width: 90%;
+				margin: 0 auto;
+				background-image: url('https://wonderfulengineering.com/wp-content/uploads/2016/01/Africa-Wallpaper-4.jpg'); /* New background image URL */
+				background-size: cover;
+				font-family: 'Lobster', Arial, Verdana, sans-serif; /* Use the Lobster font and fallbacks */
+				color: #665544;
+				text-align: center;
+			}
+
+			/* Header Styles */
+			#header {
+				/* Remove background color */
+			}
+
+			h1.logo {
+				/* Add specific styles for the logo font here */
+				font-family: 'Lobster', Arial, sans-serif; /* Use Lobster for the logo */
+				margin-bottom: 20px; /* Add margin-bottom for space */
+			}
+
+			/* Navigation Styles */
+			#nav {
+				background-color: #98FB98; /* Change to your desired color */
+				padding: 0.5em 0;
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			li {
+				display: inline;
+				padding: 0.5em;
+			}
+
+			/* Content Styles */
+			#content {
+				overflow: auto;
+				padding-top: 20px; /* Add padding at the top of content to create space */
+			}
+
+			#feature {
+				background-color: #8CC63E; /* Updated background color */
+				background-image: url('https://th.bing.com/th/id/OIP.o1RA8D7-WMUHewwWmM51VQHaGD?rs=1&pid=ImgDetMain'); /* Updated feature image URL */
+				background-size: contain;
+				background-position: right;
+				background-repeat: no-repeat;
+				height: 10em;
+				margin-bottom: 1em;
+			}
+
+			/* Colored boxes for columns */
+			.column1 {
+				background-color: #FF5733; /* Red background color */
+				width: 31.3%;
+				float: left;
+				margin: 1%;
+				height: 10em;
+			}
+
+			.column2 {
+				background-color: #36B7F0; /* Blue background color */
+				width: 31.3%;
+				float: left;
+				margin: 1%;
+				height: 10em;
+			}
+
+			.column3 {
+				background-color: #FFD700; /* Yellow background color */
+				width: 31.3%;
+				float: left;
+				margin: 1%;
+				height: 10em;
+				margin-right: 0;
+			}
+
+			/* Footer Styles */
+			#footer {
+				background-color: #FFA07A; /* Change to your desired color */
+				padding: 0.5em 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			<h1 class="logo">Logo</h1>
+			<div id="nav">
+				<ul>
+					<li><a href="">Home</a></li>
+					<li><a href="">Products</a></li>
+					<li><a href="">Services</a></li>
+					<li><a href="">About</a></li>
+					<li><a href="">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div id="feature">
+				<p>Feature</p>
+			</div>
+			<div class="article column1">
+				<p>Column One</p>
+			</div>
+			<div class="article column2">
+				<p>Column Two</p>
+			</div>
+			<div class="article column3">
+				<p>Column Three</p>
+			</div>
+		</div>
+		<div id="footer">
+			<p>&copy; Copyright 2011</p>
+		</div>
+	</body>
+</html>
