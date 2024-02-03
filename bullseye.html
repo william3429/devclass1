@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bullseye Math Practice</title>
+    <link rel="stylesheet" href="https://your-website.com/css/c04.css" /> <!-- Replace with the actual CSS URL -->
+    <style>
+        body {
+            background-color: yellow;
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin to ensure full-page width */
+        }
+        #header {
+            background-color: #1abc9c; /* Green background color for the title */
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+        #multiplication-table {
+            text-align: center;
+            margin-top: 80px; /* Adjust as needed for vertical spacing */
+        }
+        #answer-box {
+            background-color: #1abc9c; /* Green background color for the answer box */
+            color: white; /* White text color for the answers */
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 300px; /* Limit the answer box width */
+            margin: 0 auto; /* Center the answer box horizontally */
+            display: inline-block; /* Allows the image to be placed to the right */
+            vertical-align: top; /* Aligns the image with the top of the answer box */
+        }
+        #image-container {
+            display: inline-block; /* Allows the image to be placed to the right */
+            vertical-align: top; /* Aligns the image with the top of the answer box */
+            width: 300px; /* Set the width of the image to match the text box */
+            height: auto; /* Automatically adjust the height to maintain aspect ratio */
+        }
+        #title-image {
+            width: 300px; /* Set the width of the title image */
+            height: auto; /* Automatically adjust the height to maintain aspect ratio */
+            float: right; /* Float the title image to the right */
+            margin-left: 20px; /* Add some margin for spacing */
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Bullseye Math Practice</h1>
+        <img src="https://www.hercjobs.org/wp-content/uploads/2018/09/zzz_African-American-Professor.jpg" alt="Title Image" id="title-image" />
+    </div>
+
+    <section id="multiplication-table">
+        <h2>Multiplication Table</h2>
+
+        <script>
+            // Get the user's input for the multiplication table value
+            var table = parseInt(prompt("Enter a number for the multiplication table:"));
+
+            // Check if the input is a valid number
+            if (isNaN(table)) {
+                alert("Please enter a valid number.");
+            } else {
+                var msg = '<table>'; // Start a table
+
+                // Create a multiplication table
+                for (var i = 1; i <= 10; i++) {
+                    var result = table * i;
+                    msg += '<tr><td>' + table + ' x ' + i + '</td><td>=</td><td>' + result + '</td></tr>';
+                }
+
+                msg += '</table>'; // Close the table
+
+                // Display the table inside the 'answer-box' div
+                document.getElementById('multiplication-table').innerHTML += '<div id="answer-box">' + msg + '</div>';
+            }
+        </script>
+
+        <div id="image-container">
+            <img src="https://th.bing.com/th/id/OIP.i-98N8oFZZU62N53_8wP7gHaE5?rs=1&pid=ImgDetMain" alt="Image Description" width="100%" height="auto" />
+        </div>
+    </section>
+</body>
+</html>
