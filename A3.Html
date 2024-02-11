@@ -85,24 +85,43 @@
             const rhombusDiv = document.getElementById('rhombus');
             rhombusDiv.innerHTML = '';
 
-            const maxWidth = height * 2 - 1;
-            const midPoint = Math.floor(maxWidth / 2) + 1;
-
-            for (let i = 1; i <= maxWidth; i++) {
+            for (let i = 1; i <= height; i++) {
                 const rowDiv = document.createElement('div');
                 rowDiv.classList.add('row');
 
-                const numSymbols = i <= midPoint ? i : maxWidth - i + 1;
-                const numSpaces = (maxWidth - numSymbols) / 2;
-
-                for (let j = 1; j <= numSpaces; j++) {
+                // Add spaces before the symbols
+                for (let j = 1; j <= height - i; j++) {
                     const spaceDiv = document.createElement('div');
                     spaceDiv.style.color = 'transparent';
                     spaceDiv.textContent = ' ';
                     rowDiv.appendChild(spaceDiv);
                 }
 
-                for (let j = 1; j <= numSymbols; j++) {
+                // Add symbols
+                for (let j = 1; j <= 2 * i - 1; j++) {
+                    const cellDiv = document.createElement('div');
+                    cellDiv.style.color = (j % 2 === 0) ? evenColor : oddColor;
+                    cellDiv.textContent = symbol;
+                    rowDiv.appendChild(cellDiv);
+                }
+
+                rhombusDiv.appendChild(rowDiv);
+            }
+
+            for (let i = height - 1; i >= 1; i--) {
+                const rowDiv = document.createElement('div');
+                rowDiv.classList.add('row');
+
+                // Add spaces before the symbols
+                for (let j = 1; j <= height - i; j++) {
+                    const spaceDiv = document.createElement('div');
+                    spaceDiv.style.color = 'transparent';
+                    spaceDiv.textContent = ' ';
+                    rowDiv.appendChild(spaceDiv);
+                }
+
+                // Add symbols
+                for (let j = 1; j <= 2 * i - 1; j++) {
                     const cellDiv = document.createElement('div');
                     cellDiv.style.color = (j % 2 === 0) ? evenColor : oddColor;
                     cellDiv.textContent = symbol;
@@ -115,3 +134,4 @@
     </script>
 </body>
 </html>
+
