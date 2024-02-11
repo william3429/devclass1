@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhombus Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #controls {
+            margin-bottom: 20px;
+        }
+
+        #controls label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #controls input,
+        #controls select {
+            margin-bottom: 10px;
+        }
+
+        #rhombus {
+            text-align: center;
+        }
+
+        #rhombus .row {
+            display: block;
+            text-align: center;
+        }
+
+        #rhombus .row div {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>William Osborn</h1>
+    </header>
+    <main>
+        <div id="controls">
+            <label for="height">Height of each section of the rhombus:</label>
+            <input type="number" id="height" min="1" required>
+            <label for="odd-color">Color for odd position:</label>
+            <select id="odd-color">
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+            </select>
+            <label for="even-color">Color for even position:</label>
+            <select id="even-color">
+                <option value="yellow">Yellow</option>
+                <option value="purple">Purple</option>
+                <option value="orange">Orange</option>
+            </select>
+            <label for="symbol">Symbol to be used:</label>
+            <select id="symbol">
+                <option value="*">*</option>
+                <option value="^">^</option>
+                <option value="%">%</option>
+            </select>
+            <button onclick="generateRhombus()">Generate Rhombus</button>
+        </div>
+        <div id="rhombus"></div>
+    </main>
+    <script>
+        function generateRhombus() {
+            const height = parseInt(document.getElementById('height').value);
+            const oddColor = document.getElementById('odd-color').value;
+            const evenColor = document.getElementById('even-color').value;
+            const symbol = document.getElementById('symbol').value;
+
+            const rhombusDiv = document.getElementById('rhombus');
+            rhombusDiv.innerHTML = '';
+
+            const maxWidth = height * 2 - 1;
+            const midPoint = Math.floor(maxWidth / 2) + 1;
+
+            for (let i = 1; i <= maxWidth; i++) {
+                const rowDiv = document.createElement('div');
+                rowDiv.classList.add('row');
+
+                const numSymbols = i <= midPoint ? i : maxWidth - i + 1;
+                const numSpaces = (maxWidth - numSymbols) / 2;
+
+                for (let j = 1; j <= numSpaces; j++) {
+                    const spaceDiv = document.createElement('div');
+                    spaceDiv.style.color = 'transparent';
+                    spaceDiv.textContent = ' ';
+                    rowDiv.appendChild(spaceDiv);
+                }
+
+                for (let j = 1; j <= numSymbols; j++) {
+                    const cellDiv = document.createElement('div');
+                    cellDiv.style.color = (j % 2 === 0) ? evenColor : oddColor;
+                    cellDiv.textContent = symbol;
+                    rowDiv.appendChild(cellDiv);
+                }
+
+                rhombusDiv.appendChild(rowDiv);
+            }
+        }
+    </script>
+</body>
+</html>
