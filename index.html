@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>JavaScript Form Validator Example</title>
+  <style type="text/css">
+    #errorMessages {
+      color: red;
+    }
+  </style>
+  <script type="text/javascript">
+    function validateForm() {
+      var isValid = true;
+      var errorMessage = '';
+      
+      // Clear previous error messages
+      document.getElementById('errorMessages').innerHTML = '';
+
+      // Validate First Name
+      var firstName = document.forms["myForm"]["FirstName"].value.trim();
+      if (firstName === '') {
+        errorMessage += 'Please enter your First Name<br>';
+        isValid = false;
+      } else if (!/^[A-Za-z]+$/.test(firstName)) {
+        errorMessage += 'First Name should only contain alphabetic characters<br>';
+        isValid = false;
+      } else if (firstName.length > 20) {
+        errorMessage += 'First Name cannot exceed 20 characters<br>';
+        isValid = false;
+      }
+
+      // Validate Last Name
+      var lastName = document.forms["myForm"]["LastName"].value.trim();
+      if (lastName === '') {
+        errorMessage += 'Please enter your Last Name<br>';
+        isValid = false;
+      } else if (lastName.length > 20) {
+        errorMessage += 'Last Name cannot exceed 20 characters<br>';
+        isValid = false;
+      }
+
+      // Validate Email
+      var email = document.forms["myForm"]["Email"].value.trim();
+      if (email === '') {
+        errorMessage += 'Please enter your Email<br>';
+        isValid = false;
+      } else if (!/\S+@\S+\.\S+/.test(email)) {
+        errorMessage += 'Please enter a valid Email address<br>';
+        isValid = false;
+      } else if (email.length > 50) {
+        errorMessage += 'Email cannot exceed 50 characters<br>';
+        isValid = false;
+      }
+
+      // Validate Phone
+      var phone = document.forms["myForm"]["Phone"].value.trim();
+      if (phone !== '' && !/^\d+$/.test(phone)) {
+        errorMessage += 'Phone should only contain numbers<br>';
+        isValid = false;
+      } else if (phone.length > 50) {
+        errorMessage += 'Phone cannot exceed 50 characters<br>';
+        isValid = false;
+      }
+
+      // Display error messages
+      document.getElementById('errorMessages').innerHTML = errorMessage;
+
+      return isValid;
+    }
+  </script>
+</head>
+<body>
+  <form action="thankyou.html" onsubmit="return validateForm();" id="myForm">
+    <div id="errorMessages"></div>
+    <table cellspacing="2" cellpadding="2" border="0">
+      <tr>
+        <td align="right">First Name</td>
+        <td><input type="text" name="FirstName" /></td>
+      </tr>
+      <tr>
+        <td align="right">Last Name</td>
+        <td><input type="text" name="LastName" /></td>
+      </tr>
+      <tr>
+        <td align="right">Email</td>
+        <td><input type="text" name="Email" /></td>
+      </tr>
+      <tr>
+        <td align="right">Phone</td>
+        <td><input type="text" name="Phone" /></td>
+      </tr>
+    </table>
+    <input type="submit" value="Submit" />
+  </form>
+</body>
+</html>
