@@ -1,95 +1,170 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>JavaScript Form Validator Example</title>
+  <title>Contact Us</title>
   <style type="text/css">
     #errorMessages {
       color: red;
     }
+    #thankYouMessage {
+      color: green;
+    }
   </style>
   <script type="text/javascript">
     function validateForm() {
-      var isValid = true;
-      var errorMessage = '';
+      var errorMessages = '';
       
       // Clear previous error messages
       document.getElementById('errorMessages').innerHTML = '';
 
       // Validate First Name
-      var firstName = document.forms["myForm"]["FirstName"].value.trim();
-      if (firstName === '') {
-        errorMessage += 'Please enter your First Name<br>';
-        isValid = false;
-      } else if (!/^[A-Za-z]+$/.test(firstName)) {
-        errorMessage += 'First Name should only contain alphabetic characters<br>';
-        isValid = false;
-      } else if (firstName.length > 20) {
-        errorMessage += 'First Name cannot exceed 20 characters<br>';
-        isValid = false;
+      var firstName = document.getElementById("FirstName").value.trim();
+      if (!firstName.match(/^[A-Za-z]+$/) || firstName.length > 20) {
+        errorMessages += '<p>First Name is required and should contain only alphabetic characters, maximum 20 characters.</p>';
       }
 
       // Validate Last Name
-      var lastName = document.forms["myForm"]["LastName"].value.trim();
-      if (lastName === '') {
-        errorMessage += 'Please enter your Last Name<br>';
-        isValid = false;
-      } else if (lastName.length > 20) {
-        errorMessage += 'Last Name cannot exceed 20 characters<br>';
-        isValid = false;
+      var lastName = document.getElementById("LastName").value.trim();
+      if (!lastName.match(/^[A-Za-z]+$/) || lastName.length > 50) {
+        errorMessages += '<p>Last Name is required and should contain only alphabetic characters, maximum 50 characters.</p>';
       }
 
       // Validate Email
-      var email = document.forms["myForm"]["Email"].value.trim();
-      if (email === '') {
-        errorMessage += 'Please enter your Email<br>';
-        isValid = false;
-      } else if (!/\S+@\S+\.\S+/.test(email)) {
-        errorMessage += 'Please enter a valid Email address<br>';
-        isValid = false;
-      } else if (email.length > 50) {
-        errorMessage += 'Email cannot exceed 50 characters<br>';
-        isValid = false;
+      var email = document.getElementById("Email").value.trim();
+      if (!email.match(/^\S+@\S+\.\S+$/) || email.length > 50) {
+        errorMessages += '<p>Please enter a valid Email address, maximum 50 characters.</p>';
       }
 
       // Validate Phone
-      var phone = document.forms["myForm"]["Phone"].value.trim();
-      if (phone !== '' && !/^\d+$/.test(phone)) {
-        errorMessage += 'Phone should only contain numbers<br>';
-        isValid = false;
-      } else if (phone.length > 50) {
-        errorMessage += 'Phone cannot exceed 50 characters<br>';
-        isValid = false;
+      var phone = document.getElementById("Phone").value.trim();
+      if (!phone.match(/^\d+$/) || phone.length > 15) {
+        errorMessages += '<p>Phone is required and should contain only numerical values, maximum 15 digits.</p>';
+      }
+
+      // Validate Username
+      var username = document.getElementById("Username").value.trim();
+      if (username.length > 12) {
+        errorMessages += '<p>Username cannot exceed 12 characters.</p>';
+      }
+
+      // Validate Password
+      var password = document.getElementById("Password").value;
+      if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/) || password.length > 7) {
+        errorMessages += '<p>Password is required and must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character (@$!%*?&), maximum 7 characters.</p>';
+      }
+
+      // Validate Address
+      var address = document.getElementById("Address").value.trim();
+      if (address === '') {
+        errorMessages += '<p>Address is required.</p>';
+      }
+
+      // Validate City
+      var city = document.getElementById("City").value.trim();
+      if (city === '') {
+        errorMessages += '<p>City is required.</p>';
+      }
+
+      // Validate State
+      var state = document.getElementById("State").value;
+      if (state === '') {
+        errorMessages += '<p>State is required.</p>';
+      }
+
+      // Validate Country
+      var country = document.getElementById("Country").value;
+      if (country === '') {
+        errorMessages += '<p>Country is required.</p>';
+      }
+
+      // Validate ZipCode
+      var zipcode = document.getElementById("ZipCode").value.trim();
+      if (country === 'USA' && (!zipcode.match(/^\d{5}$/) || zipcode === '')) {
+        errorMessages += '<p>ZipCode is required and should be 5 digits.</p>';
       }
 
       // Display error messages
-      document.getElementById('errorMessages').innerHTML = errorMessage;
+      document.getElementById('errorMessages').innerHTML = errorMessages;
 
-      return isValid;
+      // Check if there are any errors
+      if (errorMessages === '') {
+        // If no errors, display thank you message and clear form
+        document.getElementById('contactForm').reset();
+        document.getElementById('thankYouMessage').innerHTML = '<p>Thank you for contacting us!</p>';
+      }
+
+      // Prevent form submission
+      return false;
     }
   </script>
 </head>
 <body>
-  <form action="thankyou.html" onsubmit="return validateForm();" id="myForm">
+  <h2>Contact Us</h2>
+  <form action="#" onsubmit="return validateForm();" id="contactForm">
     <div id="errorMessages"></div>
     <table cellspacing="2" cellpadding="2" border="0">
       <tr>
-        <td align="right">First Name</td>
-        <td><input type="text" name="FirstName" /></td>
+        <td align="right"><label for="FirstName">First Name:</label></td>
+        <td><input type="text" id="FirstName" name="FirstName" /></td>
       </tr>
       <tr>
-        <td align="right">Last Name</td>
-        <td><input type="text" name="LastName" /></td>
+        <td align="right"><label for="LastName">Last Name:</label></td>
+        <td><input type="text" id="LastName" name="LastName" /></td>
       </tr>
       <tr>
-        <td align="right">Email</td>
-        <td><input type="text" name="Email" /></td>
+        <td align="right"><label for="Email">Email:</label></td>
+        <td><input type="text" id="Email" name="Email" /></td>
       </tr>
       <tr>
-        <td align="right">Phone</td>
-        <td><input type="text" name="Phone" /></td>
+        <td align="right"><label for="Phone">Phone:</label></td>
+        <td><input type="text" id="Phone" name="Phone" /></td>
+      </tr>
+      <tr>
+        <td align="right"><label for="Username">Username:</label></td>
+        <td><input type="text" id="Username" name="Username" /></td>
+      </tr>
+      <tr>
+        <td align="right"><label for="Password">Password:</label></td>
+        <td><input type="password" id="Password" name="Password" /></td>
+      </tr>
+      <tr>
+        <td align="right"><label for="Address">Address:</label></td>
+        <td><input type="text" id="Address" name="Address" /></td>
+      </tr>
+      <tr>
+        <td align="right"><label for="City">City:</label></td>
+        <td><input type="text" id="City" name="City" /></td>
+      </tr>
+      <tr>
+        <td align="right"><label for="State">State:</label></td>
+        <td>
+          <select id="State" name="State">
+            <option value="">Select State</option>
+            <!-- Options for states -->
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td align="right"><label for="Country">Country:</label></td>
+        <td>
+          <select id="Country" name="Country">
+            <option value="">Select Country</option>
+            <!-- Options for countries -->
+            <option value="USA">United States</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td align="right"><label for="ZipCode">ZipCode:</label></td>
+        <td><input type="text" id="ZipCode" name="ZipCode" /></td>
+      </tr>
+      <tr>
+        <td align="right"><label for="Comments">Comments:</label></td>
+        <td><textarea id="Comments" name="Comments" rows="4" cols="20"></textarea></td>
       </tr>
     </table>
     <input type="submit" value="Submit" />
   </form>
+  <div id="thankYouMessage"></div>
 </body>
 </html>
