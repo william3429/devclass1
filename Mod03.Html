@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript &amp; jQuery - Chapter 5: Document Object Model - Add Element</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #page {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 80px);
+        }
+
+        button {
+            padding: 8px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function addItem() {
+            // Get the value from the input field
+            var newItemText = document.getElementById("newItem").value;
+
+            // Create a new list item element
+            var newItem = document.createElement("li");
+            newItem.textContent = newItemText;
+
+            // Append the new item to the list
+            document.getElementById("todo").appendChild(newItem);
+
+            // Clear the input field
+            document.getElementById("newItem").value = "";
+        }
+    </script>
+</head>
+<body>
+    <div id="page">
+        <h1>List</h1>
+        <h2>Buy groceries</h2>
+        <ul id="todo">
+            <li id="one" class="hot"><em>fresh</em> figs</li>
+            <li id="two" class="hot">pine nuts</li>
+            <li id="three" class="hot">honey</li>
+            <li id="four">balsamic vinegar</li>
+        </ul>
+        <label for="newItem">New Item:</label>
+        <input type="text" id="newItem">
+        <button onclick="addItem()">Add Item</button>
+    </div>
+</body>
+</html>
