@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slideshow</title>
+<style>
+  h1 {
+    font-family: 'AileronThin', Consolas;
+    font-size: 200%;
+  }
+
+  main {
+    font-family: 'AileronThin', Consolas;
+    font-size: 100%;
+  }
+
+  #footer {
+    height: 20px;
+    width: 90px;
+    margin-top: 8px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #slideshowbox {
+    display: block;
+    margin-left: 5%;
+  }
+
+  button {
+    font-family: 'AileronThin', Consolas;
+    font-size: 100%;
+  }
+
+  .break {
+    clear: both;
+  }
+
+  /* Existing CSS styles */
+  #slideshow-container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .slideshow-img {
+    display: none;
+    width: 100%;
+    height: auto;
+  }
+
+  #prevBtn, #nextBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+
+  #prevBtn {
+    left: 0;
+  }
+
+  #nextBtn {
+    right: 0;
+  }
+
+  #image-description {
+    text-align: center;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Slideshow</h1>
+
+<main>
+  <div id="slideshow-container">
+    <img class="slideshow-img" src="https://meteoraphototour.com/wp-content/uploads/2018/08/METEORA-PHOTO-TOUR-SUNSET.jpg" alt="Sunset with big rocks and a small home">
+    <img class="slideshow-img" src="https://www.how-to-design.org/web-design/demos/demo-05-advanced-css3-transitions-photo-gallery/img/el-capitan-color.jpg" alt="Snowy mountains">
+    <img class="slideshow-img" src="https://wallpaperaccess.com/full/254381.jpg" alt="Airplane in air">
+    <img class="slideshow-img" src="https://th.bing.com/th/id/OIP.cKJSv9dgcVdUIZD3wGu56QHaGP?rs=1&pid=ImgDetMain" alt="Flying bison named Appa">
+    <img class="slideshow-img" src="https://th.bing.com/th/id/OIP.znRQC3cKO7JWhxnBq7zMYAHaEK?rs=1&pid=ImgDetMain" alt="Dobby the house elf">
+    
+    <button id="prevBtn" onclick="prevSlide()">Previous</button>
+    <button id="nextBtn" onclick="nextSlide()">Next</button>
+
+    <p id="image-description">Description of the image</p>
+  </div>
+</main>
+
+<div class="break"></div>
+
+<footer id="footer"></footer>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slideshow-img');
+  const totalSlides = slides.length;
+  const description = document.getElementById('image-description');
+
+  function showSlide(index) {
+    slides.forEach((slide) => {
+      slide.style.display = 'none';
+    });
+    slides[index].style.display = 'block';
+    setDescription(index);
+  }
+
+  function setDescription(index) {
+    const descriptions = [
+      "Sunset with big rocks and a small home",
+      "Snowy mountains",
+      "Airplane in air",
+      "Flying bison named Appa",
+      "Dobby the house elf"
+    ];
+    description.textContent = descriptions[index];
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+  }
+
+  // Auto slideshow
+  setInterval(nextSlide, 3000); // Change slide every 5 seconds
+</script>
+
+</body>
+</html>
