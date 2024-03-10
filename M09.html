@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click to Draw</title>
+<style>
+  body {
+    height: 200px;
+    background: beige;
+    position: relative;
+  }
+  .dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 4px;
+    background: blue;
+    position: absolute;
+  }
+  button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<button id="clearButton">Clear Screen</button>
+
+<script>
+var clearButton = document.getElementById("clearButton");
+clearButton.addEventListener("click", function(event) {
+    var dots = document.querySelectorAll(".dot");
+    dots.forEach(function(dot) {
+        dot.parentNode.removeChild(dot);
+    });
+});
+
+addEventListener("click", function(event) {
+    var dot = document.createElement("div");
+    dot.className = "dot";
+    dot.style.left = (event.pageX - 4) + "px";
+    dot.style.top = (event.pageY - 4) + "px";
+    document.body.appendChild(dot);
+});
+</script>
+</body>
+</html>
