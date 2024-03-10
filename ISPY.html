@@ -1,0 +1,91 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Spy Game</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #instructions {
+            margin-bottom: 20px;
+        }
+        #image {
+            margin: 20px auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .found {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>I Spy Game</h1>
+        <p id="instructions">Click on each coordinate to cross out the item once found.</p>
+        <img src="spy.png" alt="I Spy" id="image" usemap="#ispymap">
+        <map name="ispymap">
+            <area shape="circle" coords="270,150,30" alt="butterfly">
+            <area shape="circle" coords="530,150,30" alt="flower">
+            <area shape="circle" coords="810,150,30" alt="key">
+            <area shape="circle" coords="150,300,30" alt="apple">
+            <area shape="circle" coords="430,300,30" alt="pencil">
+            <area shape="circle" coords="700,300,30" alt="moon">
+            <area shape="circle" coords="250,450,30" alt="cloud">
+            <area shape="circle" coords="550,450,30" alt="star">
+            <area shape="circle" coords="830,450,30" alt="car">
+            <area shape="circle" coords="380,600,30" alt="tree">
+        </map>
+        <ul id="items">
+            <li>butterfly</li>
+            <li>flower</li>
+            <li>key</li>
+            <li>apple</li>
+            <li>pencil</li>
+            <li>moon</li>
+            <li>cloud</li>
+            <li>star</li>
+            <li>car</li>
+            <li>tree</li>
+        </ul>
+        <button onclick="playAgain()">Play Again</button>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('#items li');
+        let foundCount = 0;
+
+        function checkItem(item) {
+            if (item.classList.contains('found')) return;
+            item.classList.add("found");
+            foundCount++;
+            if (foundCount === items.length) {
+                const playAgain = confirm('Congratulations! You found all the items. Do you want to play again?');
+                if (playAgain) {
+                    location.reload();
+                }
+            }
+        }
+
+        items.forEach(item => {
+            item.addEventListener("click", () => {
+                checkItem(item);
+            });
+        });
+
+        function playAgain() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
